@@ -3,7 +3,7 @@ import React from 'react'
 function Navbar() {
     const categories = ['World', 'Europe', 'America', 'Premier League', 'Champions League', 'Transfer Market']
     return (
-        <nav>
+        <nav className="fixed w-full top-0 bg-white backdrop-blur-sm backdrop-filter bg-opacity-40">
         <div className="max-w-6xl px-4 mx-auto py-5 border-b border-gray-300 flex justify-between place-items-center">
           <div className="flex w-16 justify-between">
             <svg className="w-5 h-5 text-gray-800" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" /></svg>
@@ -19,16 +19,19 @@ function Navbar() {
           </div>
         </div>
 
-        <div className="max-w-6xl px-4 mx-auto py-5 border-b border-gray-300 flex place-items-center overflow-x-auto">
-          <div className="pr-3">
-            <div className="text-xs font-semibold mb-0.5">Monday</div>
-            <div className="text-xs">July 30,2021</div>
-          </div>
-          {categories.map((cat, idx) => (
-            <div key={cat} className="text-xs text-gray-800 font-sans px-4">
-              {cat}
+        <div className="border-b border-gray-300 bg-gradient-to-r from-gray-900 to-gray-700 text-white ">
+            <div className="max-w-6xl mx-auto flex place-items-center overflow-x-auto px-4 py-5 ">
+                <div className="pr-3">
+                    <div className="text-xs font-semibold mb-0.5">Monday</div>
+                    <div className="text-xs">July 30,2021</div>
+                    </div>
+                {categories.map((cat, idx) => (
+                    <div key={cat} className="text-xs font-sans px-4">
+                    {cat}
+                    </div>
+                ))}
             </div>
-          ))}
+          
         </div>
       </nav>
     )
