@@ -49,7 +49,7 @@ export default function Home({ resHot, resLatest }) {
       <div className="">
         <Navbar scroll={scroll} />
 
-        <main className="max-w-6xl px-4 mx-auto grid grid-cols-3 mt-48">
+        <main className="max-w-6xl px-4 mx-auto grid grid-cols-3 mt-48 mb-20">
           <div className="col-span-2 border-r border-gray-300 pr-6">
             <h3 className="font-bold text-gray-800">Hot News</h3>
             <div className="grid grid-cols-2 gap-x-10 gap-y-6 mt-4">

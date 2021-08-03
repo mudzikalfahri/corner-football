@@ -1,14 +1,13 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
-function Navbar({ scroll }) {
-  const categories = [
-    "World",
-    "Europe",
-    "America",
-    "Premier League",
-    "Champions League",
-    "Transfer Market",
-  ];
+export default function Navbar({ scroll }) {
+  useEffect(async () => {
+    const res = await fetch(process.env.NEXT_PUBLIC_APIURL + "/categories");
+    const data = await res.json();
+    setCategories(data);
+  }, []);
+  const [categories, setCategories] = useState([]);
   return (
     <nav className="fixed w-full top-0 bg-white backdrop-blur-sm backdrop-filter bg-opacity-40">
       <div
@@ -38,7 +37,12 @@ function Navbar({ scroll }) {
             <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
           </svg>
         </div>
-        <div className="font-serif text-gray-800 text-xl ">Corner Football</div>
+        <Link href="/">
+          <div className="font-serif text-gray-800 text-xl cursor-pointer hover:text-gray-400 duration-200">
+            Corner Football
+          </div>
+        </Link>
+
         <div className="">
           <div className="border border-gray-800 py-1.5 px-3 text-xs font-bold cursor-pointer hover:bg-gray-900 hover:text-white duration-200">
             SUBSCRIBE
@@ -52,9 +56,9 @@ function Navbar({ scroll }) {
             <div className="text-xs font-semibold mb-0.5">Monday</div>
             <div className="text-xs">July 30,2021</div>
           </div>
-          {categories.map((cat, idx) => (
-            <div key={cat} className="text-xs font-sans px-4">
-              {cat}
+          {categories.map((cat) => (
+            <div key={cat.name} className="text-xs font-sans px-4">
+              {cat.name}
             </div>
           ))}
         </div>
@@ -62,5 +66,3 @@ function Navbar({ scroll }) {
     </nav>
   );
 }
-
-export default Navbar;
