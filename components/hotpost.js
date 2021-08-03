@@ -4,7 +4,7 @@ function HotPost({ category, title, thumbnail, headline }) {
       <div className="w-full">
         <img
           className="object-cover h-60"
-          src={process.env.APIURL + thumbnail.url}
+          src={process.env.NEXT_PUBLIC_APIURL + thumbnail.formats.medium.url}
           alt=""
         />
       </div>
@@ -18,7 +18,9 @@ function HotPost({ category, title, thumbnail, headline }) {
         <div className="text-2xl font-bold font-serif text-gray-800 mb-2 line-clamp-2">
           {title}
         </div>
-        <div className="text-xs text-gray-500 mb-2">{headline}</div>
+        <div className="text-xs text-gray-500 mb-2 line-clamp-4">
+          {headline}
+        </div>
         <div className="underline text-xs text-gray-800">Continue reading</div>
       </div>
     </div>
