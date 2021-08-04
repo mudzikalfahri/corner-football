@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import Navbar from "../../components/navbar";
 import { dateFormat } from "../../utils/dateformat";
+import ReactMarkdown from "react-markdown";
 
 export async function getStaticPaths() {
   const res = await fetch(process.env.NEXT_PUBLIC_APIURL + "/posts");
@@ -54,7 +55,7 @@ function DetailPost({ post }) {
       </Head>
       <Navbar scroll={scroll} />
       <main className="max-w-6xl px-4 mx-auto mt-48">
-        <div className="w-2/3 mx-auto">
+        <div className="md:w-2/3 mx-auto">
           <div className="flex">
             <div className="text-lg text-white px-3 py-2 bg-gray-800 mb-3">
               {post.category.name}
@@ -73,7 +74,10 @@ function DetailPost({ post }) {
             }
             alt=""
           />
-          <p className="text-gray-700 my-8 text-lg">{post.content}</p>
+
+          <ReactMarkdown className="text-gray-700 my-8 text-lg">
+            {post.content}
+          </ReactMarkdown>
         </div>
       </main>
     </>

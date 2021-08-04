@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { dateFormat } from "../utils/dateformat";
 
 export default function Navbar({ scroll }) {
   useEffect(async () => {
@@ -12,7 +13,7 @@ export default function Navbar({ scroll }) {
     <nav className="fixed w-full top-0 bg-white backdrop-blur-sm backdrop-filter bg-opacity-40">
       <div
         className={`${
-          scroll ? `transform -translate-y-60 absolute` : `static top-0`
+          scroll ? `transform -translate-y-60 absolute` : `static`
         } max-w-6xl px-4 mx-auto py-5 flex justify-between place-items-center duration-300`}
       >
         <div className="flex w-16 justify-between">
@@ -44,22 +45,31 @@ export default function Navbar({ scroll }) {
         </Link>
 
         <div className="">
-          <div className="border border-gray-800 py-1.5 px-3 text-xs font-bold cursor-pointer hover:bg-gray-900 hover:text-white duration-200">
+          <div className="border border-gray-800 py-1.5 px-3 text-xs font-bold cursor-pointer hover:bg-gray-800 hover:text-white duration-200">
             SUBSCRIBE
           </div>
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-gray-900 to-gray-700 text-white duration-500">
+      <div
+        className={`${
+          scroll
+            ? `backdrop-filter text-gray-800 backdrop-blur-2xl bg-gray-300 bg-opacity-50`
+            : `bg-gradient-to-r from-gray-900 text-white to-gray-700 backdrop-blur-none`
+        } duration-500`}
+      >
         <div className="max-w-6xl mx-auto flex place-items-center overflow-x-auto px-4 py-5 ">
           <div className="pr-3">
-            <div className="text-xs font-semibold mb-0.5">Monday</div>
-            <div className="text-xs">July 30,2021</div>
+            <div className="text-xs font-semibold mb-0.5 w-24 pr-1 leading-relaxed">
+              {dateFormat(new Date().toISOString())}
+            </div>
           </div>
           {categories.map((cat) => (
-            <div key={cat.name} className="text-xs font-sans px-4">
-              {cat.name}
-            </div>
+            <Link key={cat.name} href={`/category/${cat.slug}`}>
+              <div className="text-xs font-sans px-4 cursor-pointer">
+                {cat.name}
+              </div>
+            </Link>
           ))}
         </div>
       </div>

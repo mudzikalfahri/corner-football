@@ -49,16 +49,16 @@ export default function Home({ resHot, resLatest }) {
       <div className="">
         <Navbar scroll={scroll} />
 
-        <main className="max-w-6xl px-4 mx-auto grid grid-cols-3 mt-48 mb-20">
-          <div className="col-span-2 border-r border-gray-300 pr-6">
+        <main className="max-w-6xl px-4 mx-auto grid grid-cols-1 md:grid-cols-3 mt-48 mb-20">
+          <div className="col-span-2 border-b md:border-b-0 md:border-r border-gray-300 pb-6 mb-6 md:pr-6">
             <h3 className="font-bold text-gray-800">Hot News</h3>
-            <div className="grid grid-cols-2 gap-x-10 gap-y-6 mt-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10 md:gap-y-6 mt-4">
               {dataHot.map(({ id, ...otherProps }) => (
                 <HotPost key={id} {...otherProps} />
               ))}
             </div>
           </div>
-          <div className="pl-4">
+          <div className="md:pl-4">
             <h3 className="font-bold text-gray-800">Latest Update</h3>
             <div className="mt-4">
               {dataLatest.map(({ id, ...otherProps }) => (

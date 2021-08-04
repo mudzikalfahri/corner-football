@@ -7,7 +7,7 @@ function HotPost({ category, title, thumbnail, headline, published_at, slug }) {
       <div className="cursor-pointer">
         <div className="w-full">
           <img
-            className="object-cover h-60"
+            className="object-cover w-full h-60"
             src={process.env.NEXT_PUBLIC_APIURL + thumbnail.formats.medium.url}
             alt=""
           />
