@@ -5,11 +5,7 @@ function LatestPost({ category, title, thumbnail, published_at, slug }) {
   return (
     <Link href={`/posts/${slug}`}>
       <div className="flex mb-4 cursor-pointer">
-        <img
-          src={process.env.NEXT_PUBLIC_APIURL + thumbnail.formats.small.url}
-          alt=""
-          className="w-24 h-24 object-cover"
-        />
+        <img src={thumbnail} alt="" className="w-24 h-24 object-cover" />
         <div className="ml-2 flex-col flex justify-between">
           <p className="text-xs text-gray-400">{dateFormat(published_at)}</p>
           <p className="font-serif font-bold text-lg line-clamp-1">{title}</p>

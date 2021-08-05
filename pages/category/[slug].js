@@ -1,6 +1,4 @@
-import Navbar from "../../components/navbar";
 import Head from "next/head";
-import { useRouter } from "next/dist/client/router";
 import HotPost from "../../components/hotpost";
 
 export async function getStaticPaths() {
@@ -33,14 +31,20 @@ export async function getStaticProps({ params }) {
   };
 }
 
-function categoryPage({ data, single }) {
+function categoryPage({ data, single, setScroll }) {
+  const scrollFunc = () => {
+    if (window.scrollY > 100) {
+      setScroll(true);
+    } else {
+      setScroll(false);
+    }
+  };
   return (
     <>
       <Head>
-        <title>Corner Football</title>
+        <title>CF - {single.category.name}</title>
         <link rel="icon" href="https://i.ibb.co/wRYpkr8/volleyball.png" />
       </Head>
-      <Navbar />
       <div className="max-w-6xl px-4 mx-auto mt-44 mb-10 text-center border border-gray-400 py-2 text-gray-800">
         <h1>Search by Category:</h1>
         <h1 className="font-sans text-2xl font-bold">{single.category.name}</h1>

@@ -1,6 +1,5 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
-import Navbar from "../../components/navbar";
+import { useEffect } from "react";
 import { dateFormat } from "../../utils/dateformat";
 import ReactMarkdown from "react-markdown";
 
@@ -33,8 +32,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
-function DetailPost({ post }) {
-  const [scroll, setScroll] = useState(false);
+function DetailPost({ post, setScroll }) {
   const scrollFunc = () => {
     if (window.scrollY > 100) {
       setScroll(true);
@@ -53,7 +51,6 @@ function DetailPost({ post }) {
         <title>CF - {post.title}</title>
         <link rel="icon" href="https://i.ibb.co/wRYpkr8/volleyball.png" />
       </Head>
-      <Navbar scroll={scroll} />
       <main className="max-w-6xl px-4 mx-auto mt-48">
         <div className="md:w-2/3 mx-auto">
           <div className="flex">
@@ -68,12 +65,7 @@ function DetailPost({ post }) {
           <p className="text-md text-gray-400 mb-1">
             {dateFormat(post.published_at)}
           </p>
-          <img
-            src={
-              process.env.NEXT_PUBLIC_APIURL + post.thumbnail.formats.large.url
-            }
-            alt=""
-          />
+          <img src={post.thumbnail} alt="" className="w-full object-cover" />
 
           <ReactMarkdown className="text-gray-700 my-8 text-lg">
             {post.content}

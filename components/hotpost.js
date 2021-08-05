@@ -6,11 +6,7 @@ function HotPost({ category, title, thumbnail, headline, published_at, slug }) {
     <Link href={`/posts/${slug}`}>
       <div className="cursor-pointer">
         <div className="w-full">
-          <img
-            className="object-cover w-full h-60"
-            src={process.env.NEXT_PUBLIC_APIURL + thumbnail.formats.medium.url}
-            alt=""
-          />
+          <img className="object-cover w-full h-60" src={thumbnail} alt="" />
         </div>
         <div className="flex place-items-center">
           <div className="text-xs text-white px-2 py-2 bg-gray-800 my-3 mr-3">
