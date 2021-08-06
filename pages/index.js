@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import LatestPost from "../components/latestpost";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const reqHot = await fetch(
     process.env.NEXT_PUBLIC_APIURL + "/posts?_where[hot]=true&_sort=id:DESC"
   );
