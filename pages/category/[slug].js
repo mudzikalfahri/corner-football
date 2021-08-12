@@ -1,5 +1,6 @@
 import Head from "next/head";
 import HotPost from "../../components/hotpost";
+import SkeletonPost from "../../components/skeletonpost";
 
 export async function getStaticPaths() {
   const res = await fetch(process.env.NEXT_PUBLIC_APIURL + "/categories");
@@ -21,6 +22,16 @@ export async function getStaticProps({ params }) {
     process.env.NEXT_PUBLIC_APIURL + `/posts?category.slug=${slug}`
   );
   const data = await res.json();
+
+  if (!data.length) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
   const single = data[0];
 
   return {
@@ -40,6 +51,11 @@ function categoryPage({ data, single, setScroll }) {
       setScroll(false);
     }
   };
+
+  if (!data && !single) {
+    return <SkeletonPost />;
+  }
+
   return (
     <>
       <Head>
