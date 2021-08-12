@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useEffect } from "react";
 import { dateFormat } from "../../utils/dateformat";
 import ReactMarkdown from "react-markdown";
+import SkeletonPost from "../../components/skeletonpost";
 
 export async function getStaticPaths() {
   const res = await fetch(process.env.NEXT_PUBLIC_APIURL + "/posts");
@@ -13,7 +14,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -25,10 +26,20 @@ export async function getStaticProps({ params }) {
   const data = await res.json();
   const post = data[0];
 
+  if (!data.length) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
   return {
     props: {
       post,
     },
+    revalidate: 10,
   };
 }
 
@@ -44,6 +55,10 @@ function DetailPost({ post, setScroll }) {
   useEffect(() => {
     window.addEventListener("scroll", scrollFunc);
   }, []);
+
+  if (!post) {
+    return <SkeletonPost />;
+  }
 
   return (
     <>

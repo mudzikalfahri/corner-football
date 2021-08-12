@@ -19,6 +19,7 @@ export async function getStaticProps() {
       resHot: resHot,
       resLatest: resLatest,
     },
+    revalidate: 10,
   };
 }
 
