@@ -3,12 +3,78 @@ import Link from "next/link";
 import { dateFormat } from "../utils/dateformat";
 
 export default function Navbar({ scroll }) {
-  useEffect(async () => {
-    const res = await fetch(process.env.NEXT_PUBLIC_APIURL + "/categories");
-    const data = await res.json();
-    setCategories(data);
-  }, []);
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([
+    {
+      _id: "610a9ead48cd781948c2505c",
+      name: "Bundesliga",
+      slug: "bundesliga",
+      published_at: "2021-08-04T14:05:38.146Z",
+      createdAt: "2021-08-04T14:05:33.966Z",
+      updatedAt: "2021-08-04T14:05:38.262Z",
+      __v: 0,
+      id: "610a9ead48cd781948c2505c",
+    },
+    {
+      _id: "610a9ebb48cd781948c2505d",
+      name: "Eredivisie",
+      slug: "eredivisie",
+      published_at: "2021-08-04T14:05:50.587Z",
+      createdAt: "2021-08-04T14:05:47.625Z",
+      updatedAt: "2021-08-04T14:05:50.713Z",
+      __v: 0,
+      id: "610a9ebb48cd781948c2505d",
+    },
+    {
+      _id: "610a9ec648cd781948c2505e",
+      name: "La Liga",
+      slug: "la-liga",
+      published_at: "2021-08-04T14:06:00.704Z",
+      createdAt: "2021-08-04T14:05:58.191Z",
+      updatedAt: "2021-08-04T14:06:00.825Z",
+      __v: 0,
+      id: "610a9ec648cd781948c2505e",
+    },
+    {
+      _id: "610a9ed048cd781948c2505f",
+      name: "League 1",
+      slug: "league-1",
+      published_at: "2021-08-04T14:06:10.898Z",
+      createdAt: "2021-08-04T14:06:08.336Z",
+      updatedAt: "2021-08-04T14:06:11.026Z",
+      __v: 0,
+      id: "610a9ed048cd781948c2505f",
+    },
+    {
+      _id: "610a9eda48cd781948c25060",
+      name: "Premier League",
+      slug: "premier-league",
+      published_at: "2021-08-04T14:06:21.390Z",
+      createdAt: "2021-08-04T14:06:18.966Z",
+      updatedAt: "2021-08-04T14:06:21.821Z",
+      __v: 0,
+      id: "610a9eda48cd781948c25060",
+    },
+    {
+      _id: "610a9ee648cd781948c25061",
+      name: "Serie A",
+      slug: "serie-a",
+      published_at: "2021-08-04T14:06:33.561Z",
+      createdAt: "2021-08-04T14:06:30.054Z",
+      updatedAt: "2021-08-04T14:06:33.696Z",
+      __v: 0,
+      id: "610a9ee648cd781948c25061",
+    },
+    {
+      _id: "610a9ef248cd781948c25062",
+      name: "World News",
+      slug: "world-news",
+      published_at: "2021-08-04T14:06:45.554Z",
+      createdAt: "2021-08-04T14:06:42.769Z",
+      updatedAt: "2021-08-04T14:06:45.670Z",
+      __v: 0,
+      id: "610a9ef248cd781948c25062",
+    },
+  ]);
   return (
     <nav className="fixed w-full top-0 bg-white backdrop-blur-sm backdrop-filter bg-opacity-40">
       <div
